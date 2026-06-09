@@ -26,10 +26,50 @@
             <li>Unicorn Horn</li>
         </ul>
 
-
         <!-- Reset Button -->
         <button id="resetButton">Reset</button>
     </div>
-    
+
+    <script>
+        const spellArea = document.getElementById("spellArea");
+        const generateButton = document.getElementById("generateButton");
+        const ingredientList = document.querySelectorAll("#ingredientList li");
+        const resetButton = document.getElementById("resetButton");
+
+        generateButton.addEventListener("click", function () {
+
+            const randomIndex = Math.floor(Math.random() * ingredientList.length);
+            const selectedIngredient = ingredientList[randomIndex].textContent;
+
+            let countdown = 3;
+
+            const timer = setInterval(function () {
+
+                if (countdown > 0) {
+                    spellArea.textContent = countdown;
+                    countdown--;
+                } else {
+                    clearInterval(timer);
+
+                    spellArea.textContent = `${selectedIngredient}`;
+
+                    const randomColor = `rgb(
+                ${Math.floor(Math.random() * 256)},
+                ${Math.floor(Math.random() * 256)},
+                ${Math.floor(Math.random() * 256)}
+              )`;
+
+                    spellArea.style.backgroundColor = randomColor;
+                }
+
+            }, 1000);
+
+        });
+
+        resetButton.addEventListener("click", function () {
+            spellArea.textContent = "";
+            spellArea.style.backgroundColor = "";
+        });
+    </script>
 </body>
 </html>
