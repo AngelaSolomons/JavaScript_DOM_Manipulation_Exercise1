@@ -6,12 +6,12 @@
     <title>Magical Spell Generator</title>
 </head>
 <body>
-    <!-- Header -->
+        <!-- Header -->
     <div class="header">
         <h1>Welcome to the Magical Spell Generator!</h1>
     </div>
 
-    <!-- Spell Area -->
+        <!-- Spell Area -->
     <div id="spellArea"></div>
     
 
@@ -31,16 +31,20 @@
     </div>
 
     <script>
+        // Link JavaScript to HTML
         const spellArea = document.getElementById("spellArea");
         const generateButton = document.getElementById("generateButton");
         const ingredientList = document.querySelectorAll("#ingredientList li");
         const resetButton = document.getElementById("resetButton");
 
+
+        // Random Ingredient
         generateButton.addEventListener("click", function () {
 
             const randomIndex = Math.floor(Math.random() * ingredientList.length);
             const selectedIngredient = ingredientList[randomIndex].textContent;
 
+        // Countdown Timer
             let countdown = 3;
 
             const timer = setInterval(function () {
@@ -50,22 +54,20 @@
                     countdown--;
                 } else {
                     clearInterval(timer);
-
                     spellArea.textContent = `${selectedIngredient}`;
 
+        //Random Background-color
                     const randomColor = `rgb(
                 ${Math.floor(Math.random() * 256)},
                 ${Math.floor(Math.random() * 256)},
                 ${Math.floor(Math.random() * 256)}
               )`;
-
                     spellArea.style.backgroundColor = randomColor;
                 }
-
             }, 1000);
-
         });
 
+        // Reset Button
         resetButton.addEventListener("click", function () {
             spellArea.textContent = "";
             spellArea.style.backgroundColor = "";
